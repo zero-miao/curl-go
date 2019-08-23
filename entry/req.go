@@ -3,9 +3,9 @@ package entry
 import (
 	"bytes"
 	"fmt"
+	"github.com/zero-miao/curl-go/mode"
 	"github.com/zero-miao/curl-go/req"
 	"github.com/zero-miao/curl-go/run"
-	"github.com/zero-miao/curl-go/stat"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -41,8 +41,8 @@ type RequestCLIConfig struct {
 }
 
 func (c *RequestCLIConfig) Make() (interface{}, error) {
-	switch stat.Protocol(c.Protocol) {
-	case stat.ProtocolHTTP:
+	switch mode.Protocol(c.Protocol) {
+	case mode.ProtocolHTTP:
 		u, err := url.Parse(c.Url)
 		if err != nil {
 			return nil, fmt.Errorf("url invalid")
@@ -72,8 +72,8 @@ func (c *RequestCLIConfig) Make() (interface{}, error) {
 }
 
 func (c *RequestCLIConfig) MakeRunner() (req.Runner, error) {
-	switch stat.Protocol(c.Protocol) {
-	case stat.ProtocolHTTP:
+	switch mode.Protocol(c.Protocol) {
+	case mode.ProtocolHTTP:
 		cscheckmap := map[int]byte{}
 		if c.CorrectSEnum != nil {
 			for _, item := range c.CorrectSEnum {

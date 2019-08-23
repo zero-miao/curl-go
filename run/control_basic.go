@@ -35,8 +35,13 @@ func (c *BasicController) Control(runner req.Runner, reporter Reporter) {
 	if c.Concurrency <= 0 {
 		panic("concurrency should be specified")
 	}
-
-	fmt.Println("control begin: " + c.String())
+	if c.Count > 0 {
+		fmt.Printf("control begin: 并发数=%d, 总运行次数=%d\n", c.Concurrency, c.Count)
+	} else if c.Period > 0 {
+		fmt.Printf("control begin: 并发数=%d, 总运行时间~=%s\n", c.Concurrency, c.Period.String())
+	} else {
+		panic("参数错误")
+	}
 	fmt.Println("check the above information, bench will begin 3s later...")
 	time.Sleep(3 * time.Second)
 

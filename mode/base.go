@@ -1,4 +1,4 @@
-package stat
+package mode
 
 import (
 	"bytes"

@@ -3,9 +3,9 @@ package entry
 import (
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/zero-miao/curl-go/mode"
 	"github.com/zero-miao/curl-go/req"
 	"github.com/zero-miao/curl-go/run"
-	"github.com/zero-miao/curl-go/stat"
 	"time"
 )
 
@@ -20,7 +20,7 @@ func manual() *cobra.Command {
 	// 请求参数
 	rc := RequestCLIConfig{}
 	// 并发控制
-	mc := stat.ManualConfig{}
+	mc := mode.ManualConfig{}
 
 	reportConfig := ReportCLIConfig{}
 
@@ -55,7 +55,7 @@ func manual() *cobra.Command {
 		Short: "curl_ab just like curl+ab",
 		Long:  "curl_ab just like curl+ab",
 		Run: func(cmd *cobra.Command, args []string) {
-			mode := &stat.ManualMode{
+			mode := &mode.ManualMode{
 				ModeArgs: mc,
 
 				Runner: runner,
