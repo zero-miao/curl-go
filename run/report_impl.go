@@ -114,6 +114,9 @@ func (s *Statistic) Result(print bool) {
 	partition(s.lats, 0, length)
 	for _, tp := range s.TP {
 		index := (tp * length) / 100
+		if index >= length-1 {
+			index = length - 1
+		}
 		s.topPercentile[fmt.Sprintf("tp%d", tp)] = s.lats[index]
 	}
 	if print {
