@@ -13,11 +13,14 @@
 
     curl_ab -m GET -H Authorization=zero https://www.baidu.com
     
-示例 2: 并发 100, 请求 1000 次, 记录对端 ip:port, 输出请求结果到文件: /tmp/zero96.cc, 并且统计 p90, p99. 
+示例 2: 并发 100, 请求 1000 次, 记录对端 ip:port, 输出请求结果到文件: /tmp/zero96.csv, 并且统计 p90, p99. 
 
-    curl_ab -c 100 -n 1000 --record_ip --tp=90 --tp=99 -o /tmp/zero96.cc https://www.baidu.com
+    curl_ab -c 100 -n 1000 --record_ip --tp=90 --tp=99 --csv /tmp/zero96.csv https://www.baidu.com
     
 示例 3: 结果太多, 使用蓄水池算法来抽样(只保留 1000 个结果, 来计算 p90, p99 的值)
 
-    curl_ab -c 1000 -n 100000 --reservoir=1000 --record_ip --tp=90 --tp=99 -o /tmp/baidu.com.csv https://www.baidu.com
+    curl_ab -c 1000 -n 100000 --reservoir=1000 --record_ip --tp=90 --tp=99 -csv /tmp/baidu.com.csv https://www.baidu.com
     
+示例 4: 命令参数太复杂. 写到文件里, 然后调用. 
+
+    curl_ab -f sample.yaml

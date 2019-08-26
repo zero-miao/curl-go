@@ -1,0 +1,24 @@
+protocol: HTTP
+requests:
+  - method: "GET"
+    headers:
+      - "Authorization=zero"
+    body: ""
+    url: "https://baidu.com"
+runner:
+  record_remote_ip: true
+  timeout: "30s"
+  correct_status_max: 499
+  correct_status_min: 199
+reporter:
+  reporter_class: "default"
+  result_csv: "-"
+  filters:
+    - correct
+  reservoir: 0
+  tp: [50, 90, 99]
+mode:
+  mode_class: "manual"
+  concurrency: 3
+  count: 100
+  time_limit: "0"

@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/zero-miao/curl-go/entry"
+	"github.com/zero-miao/curl-go/cmd"
 	"os"
 )
 
 func main() {
-	if err := entry.Entry(); err != nil {
+	if err := cmd.Entry(); err != nil {
 		os.Exit(1)
 	}
 }
